@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  localstack:
+    image: localstack/localstack:4.0.3
+    container_name: localstack
+    ports:
+      - "4566:4566"  # LocalStack Gateway
+      - "4572:4572"  # S3
+    environment:
+      - SERVICES=s3
+      - DEBUG=1
+      - DATA_DIR=/var/lib/localstack/data
+    volumes:
+      - "./localstack:/var/lib/localstack"
+    networks:
+      - localstack-network
+
+  app:
+    build: .
+    container_name: demo-reactive
+    ports:
+      - "8082:8082"
+    environment:
+      - AWS_ACCESS_KEY_ID=test
+      - AWS_SECRET_ACCESS_KEY=test
+      - AWS_DEFAULT_REGION=us-east-1
+    networks:
+      - localstack-network
+    depends_on:
+      - localstack
+
+networks:
+  localstack-network:
+    driver: bridge

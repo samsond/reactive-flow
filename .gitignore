@@ -40,3 +40,16 @@ logs/
 *.swp
 
 HELP.md
+hello.txt
+
+# Ignore localstack logs
+localstack/
+
+# Ignore localstack data
+.localstack/
+
+# Ignore aws credentials
+.aws/
+
+
+
