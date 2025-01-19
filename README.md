@@ -4,7 +4,7 @@ This repository contains a demo reactive application that interacts with AWS S3 
 
 ## Getting Started
 
-### Start the Services
+#### Start the Services
 
 To start the services, run the following command:
 
@@ -12,33 +12,33 @@ To start the services, run the following command:
 docker-compose up --build
 ```
 
-# Create Bucket
+#### Create Bucket
 ```bash
 aws --endpoint-url=http://localhost:4566 s3 mb s3://my-test-bucket
 ```
 
-# List Buckets
+#### List Buckets
 ```bash
 aws --endpoint-url=http://localhost:4566 s3 ls
 ```
 
-# List objects in a Bucket
+#### List objects in a Bucket
 ```bash
 aws --endpoint-url=http://localhost:4566 s3 ls s3://my-test-bucket
 ```
 
-# upload a file
+#### upload a file
 ```bash
 echo "Hello, LocalStack!" > hello.txt
 aws --endpoint-url=http://localhost:4566 s3 cp hello.txt s3://my-test-bucket/hello.txt
 ```
 
-# Run this to create a bucket using the application
+#### Run this to create a bucket using the application
 ```bash
 docker exec demo-reactive curl -X POST "http://localhost:8082/create-bucket?bucketName=my-test-bucket-2"
 ```
 
-# Check the bucket using Local AWS CLI
+#### Check the bucket using Local AWS CLI
 ```bash
 aws --endpoint-url=http://localhost:4566 s3 ls
 ```
